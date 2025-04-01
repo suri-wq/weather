@@ -33,7 +33,7 @@ function App() {
   
   useEffect(()=>{
     getCurrentLocation()
-  },[])
+  })
   
   return (
     <div>
