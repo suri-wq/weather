@@ -9,8 +9,8 @@ const WeatherBox = ({ weather }) => {
         <img src={`https://openweathermap.org/img/wn/${weather?.weather[0].icon}.png`} alt='weather image'/>
         <div>{weather?.weather[0].description}</div>
 
-        <div>{weather?.main.temp}°C, feels like: {weather?.main.feels_like}</div>
-        <div className='faren'>({weather?.main.temp * 9/5 +32}°F)</div>
+        <div>{weather?.main.temp}°C, feels like: {weather?.main.feels_like}°C</div>
+        <div className='faren'>({Math.floor(weather?.main.temp * 9/5 +32)}°F)</div>
 
     </div>
   )

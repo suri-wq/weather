@@ -33,8 +33,10 @@ body{
 }
 
 .button-area button{
-  width:60px;
-  height:50px;
+  width:70px;
+  height:70px;
+  border-radius: 70px;
   margin:10px;
   opacity: 0.8;
+  font-size:11px;
 }
