@@ -3,11 +3,13 @@ import './App.css';
 import WeatherBox from './components/WeatherBox';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import WeatherButton from './components/WeatherButton';
+import ClipLoader from "react-spinners/ClipLoader";
 
 
 function App() {
   const[weather,setWeather]=useState(null)
   const[city,setCity]=useState(null)
+  const[loading,setLoading]=useState(false)
   const cities =['paris','new york','tokyo','seoul']
 
   const getCurrentLocation=()=>{
@@ -23,18 +25,22 @@ function App() {
     const API_KEY = '2008e5ebf8fec007efbb5c093c5827bd'
 
     let url = `https://api.openweathermap.org/data/2.5/weather?units=metric&lat=${lat}&lon=${lon}&appid=${API_KEY}`
+    setLoading(true)
     let response = await fetch(url)
     let data = await response.json()
     console.log("ddd",data)
     setWeather(data)
+    setLoading(false)
   }
 
   const getWeatherByCityName=async()=>{
     const API_KEY = '2008e5ebf8fec007efbb5c093c5827bd'
     let url = `https://api.openweathermap.org/data/2.5/weather?units=metric&q=${city}&appid=${API_KEY}`
+    setLoading(true)
     let response = await fetch(url)
     let data = await response.json()
     setWeather(data)
+    setLoading(false)
   }
   
 
@@ -60,15 +66,28 @@ function App() {
   
   return (
     <div>
-      <div className='container'>
-        <WeatherBox weather={weather}/>
-        <WeatherButton 
-        selectedCity={city}
-        cities={cities} 
-        handledCityChange={handledCityChange}
-        />
-      </div>
+      {loading?(
+        <div className='container'>
+          <ClipLoader
+          color='#ccc'
+          loading={loading}
+          size={150}
+          aria-label="Loading Spinner"
+          data-testid="loader"
+          />
+        </div>
+      ) : (
+        <div className='container'>
+          <WeatherBox weather={weather}/>
+          <WeatherButton 
+          selectedCity={city}
+          cities={cities} 
+          handledCityChange={handledCityChange}
+          />
+       </div>
+      )}
       
+     
     </div>
   );
 }
