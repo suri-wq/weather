@@ -40,3 +40,16 @@ body{
   opacity: 0.8;
   font-size:11px;
 }
+
+@media only screen and (max-width: 600px) {
+  .button-area button{
+    width:90vw;
+    font-size: large;
+  }
+  .weather-box{
+    font-size: xx-large;
+    width:100vw;
+    height:300px;
+    
+  }
+}
