@@ -17,7 +17,7 @@ const WeatherButton = ({cities,selectedCity,handledCityChange}) => {
 
       {cities.map((item)=>(
         <Button 
-        variant={`${selectedCity==item?"light":"dark"}`} 
+        variant={`${selectedCity===item?"light":"dark"}`} 
         onClick={()=>handledCityChange(item)}>
             {item}
         </Button>
